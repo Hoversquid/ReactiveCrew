@@ -35,19 +35,19 @@ Step 2) Download requirements
 
     Download Python 3.9, and then use pip install to get the needed requirements.
 
-    Open a terminal and type `py -m pip install -r requirements.txt` and enter.
+    Open a terminal and type "py -m pip install -r requirements.txt" and enter.
 
 Step 3) Start a python webserver in the folder location of reactivecrew.py.
 
-    Pull up a terminal in the ReactiveCrew folder and type `py -m http.server` and enter.
-    The default address of the server will be 'localhost:8000'.
-    The Websocket used by the page to communicate with the program is 'ws://localhost:8001/'.
+    Pull up a terminal in the ReactiveCrew folder and type "py -m http.server" and enter.
+    The default address of the server will be "localhost:8000".
+    The Websocket used by the page to communicate with the program is "ws://localhost:8001/".
 
 Step 4) Start the program and navigate to the page.
 
-    Open another terminal and type `py .\reactivecrew.py` and enter.
+    Open another terminal and type "py .\reactivecrew.py" and enter.
     From here, I use a "Browser Source" on OBS to pull up the resulting page for my reactive overlay. The hotkeys should adjust the sizing and ordering of the icons and their labels.
-    The default address of the webpage should be 'localhost:8000/HTML/reactivecrew.html'
+    The default address of the webpage should be "localhost:8000/HTML/reactivecrew.html"
 
 If there's any unresponsiveness, cache refresh the page.
 If the labels or images are misplaced or incorrectly sized, just keep pressing hotkeys. It should work after some swapping around.
