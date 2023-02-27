@@ -1,0 +1,50 @@
+{
+  "img_width": "180",
+  "img_height": "150",
+  "name_size": "40",
+  "max_row": "3",
+  "max_column": "4",
+  "main_img_width": "300",
+  "main_img_height": "250",
+  "main_name_size": "50",
+  "crew_text_size": "30",
+  "main_text_size": "46",
+  "refresh_hotkey": "F24",
+  "crew_list": [
+    {
+      "name": "Crew 1",
+      "img_src": "https://reactive.fugi.tech/individual/156837894059720706",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F13"
+    },
+    {
+      "name": "Crew 2",
+      "img_src": "",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F14"
+    },
+    {
+      "name": "Crew 3",
+      "img_src": "",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F15"
+    },
+    {
+      "name": "Crew 4",
+      "img_src": "",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F16"
+    },
+    {
+      "name": "Crew 5",
+      "img_src": "",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F17"
+    }
+  ]
+}

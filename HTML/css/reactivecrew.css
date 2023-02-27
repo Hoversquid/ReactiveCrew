@@ -1,0 +1,66 @@
+.name-div {
+    font-family: "Arial", "Helvetica", sans-serif;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+iframe {
+    border: hidden;
+}
+
+body {
+    /* background-color: black; */
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* #rcorners1 {
+    border-radius: 25px;
+    background: #000;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+} */
+
+  
+
+.fade-div {
+    animation: fadeIn 0.5s;
+    -webkit-animation: fadeIn 0.5s;
+    -moz-animation: fadeIn 0.5s;
+    -o-animation: fadeIn 0.5s;
+    -ms-animation: fadeIn 0.5s;
+}
+
+.main-plate .icon {
+    -webkit-transform: scale(1.5);
+    -ms-zoom: 1.5;
+    -moz-transform: scale(1.5);
+    -moz-transform-origin: center;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 1; }
+    38% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+@-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
