@@ -1,6 +1,9 @@
-Reactive Crew is a local server app used to display who is talking and who's perspective you're viewing during streams. It uses hotkeys to swap the current focused player icon to show that viewers are seeing through their point of view.
+
+Reactive Crew is a local server app used to display who is talking and whose perspective you're viewing during streams. It uses hotkeys to swap the current focused player icon to show that viewers are seeing through their point of view.
 
 The current use case for this is to arrange Discord reactive images and use the hotkeys to switch to a focused player while also pulling up their Discord stream with the same hotkey.
+
+![Example of switching perspectives with ReactiveCrew](https://github.com/Hoversquid/ReactiveCrew/blob/main/reactiveCrewExample.gif)
 
 Example: Setting a hotkey to switch to your screen and setting your crew's hotkeys to hide your window in OBS while pulling up their perspective.
 
