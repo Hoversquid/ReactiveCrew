@@ -2,49 +2,142 @@
   "img_width": "180",
   "img_height": "150",
   "name_size": "40",
-  "max_row": "3",
+  "max_row": "4",
   "max_column": "4",
   "main_img_width": "300",
   "main_img_height": "250",
   "main_name_size": "50",
+  "main_index": "1",
   "crew_text_size": "30",
   "main_text_size": "46",
+  "exclude_main_img": "False",
   "refresh_hotkey": "F24",
   "crew_list": [
     {
-      "name": "Crew 1",
+      "name": "Hoversquid",
       "img_src": "https://reactive.fugi.tech/individual/156837894059720706",
       "active": "true",
       "css_file": "",
       "hotkey": "F13"
     },
     {
-      "name": "Crew 2",
-      "img_src": "",
+      "name": "Denroth",
+      "img_src": "https://reactive.fugi.tech/individual/86983296377958400",
       "active": "true",
       "css_file": "",
       "hotkey": "F14"
     },
     {
-      "name": "Crew 3",
-      "img_src": "",
+      "name": "Tita",
+      "img_src": "https://reactive.fugi.tech/individual/235206056882601986",
       "active": "true",
       "css_file": "",
       "hotkey": "F15"
     },
     {
-      "name": "Crew 4",
-      "img_src": "",
-      "active": "true",
+      "name": "Leif",
+      "img_src": "https://reactive.fugi.tech/individual/311317025068941321",
+      "active": "false",
       "css_file": "",
       "hotkey": "F16"
     },
     {
-      "name": "Crew 5",
-      "img_src": "",
+      "name": "Goyas",
+      "img_src": "https://reactive.fugi.tech/individual/360692282472529921",
       "active": "true",
       "css_file": "",
       "hotkey": "F17"
+    },
+    {
+      "name": "Starshard",
+      "img_src": "https://reactive.fugi.tech/individual/312933750814146562",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F18"
+    },
+    {
+      "name": "Snail",
+      "img_src": "https://reactive.fugi.tech/individual/155099418385711105",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F19"
+    },
+    {
+      "name": "Pooba",
+      "img_src": "https://reactive.fugi.tech/individual/215107858663079937",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F20"
+    },
+    {
+      "name": "RaptorBlue",
+      "img_src": "https://reactive.fugi.tech/individual/477579192460902410",
+      "active": "false",
+      "css_file": "",
+      "hotkey": "F21"
+    },
+    {
+      "name": "LannAF",
+      "img_src": "https://reactive.fugi.tech/individual/334158936519213059",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F22"
+    },
+    {
+      "name": "Ruslana",
+      "img_src": "https://reactive.fugi.tech/individual/278977902517944320",
+      "active": "true",
+      "css_file": "",
+      "hotkey": "F23"
+    },
+    {
+      "name": "Governor Explosion",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "true",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "THE",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "false",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "asfasfasfasf",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "false",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "asdgsdhdrfjfhkktghu",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "false",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "MEWHENTHER",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "false",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "HELPLPEASE",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "true",
+      "css_file": "",
+      "hotkey": ""
+    },
+    {
+      "name": "YEASYEYASEYASE",
+      "img_src": "https://reactive.fugi.tech/individual/150443744074661888",
+      "active": "true",
+      "css_file": "",
+      "hotkey": ""
     }
   ]
 }

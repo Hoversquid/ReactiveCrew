@@ -9,38 +9,48 @@ from threading import Event, Thread
 
 class ReactiveCrew:
     def __init__(self):
-        self.initialize_vars()
         self.initialize_events()
+        self.initialize_vars(False)
 
     def initialize_events(self):
         self.hotkey_event = Event()
         self.thread_started = Event()
         self.restarting_event = Event()
+        self.html_created_event = Event()
+        # Set the refresh button hotkey
 
-    def initialize_vars(self):
+    def initialize_vars(self, resetting):
         self.max_row, self.max_column = 0, 0
-        self.selected_icon, self.last_main_icon = 0, 0
+        if resetting:
+            self.last_main_icon = self.selected_icon
+        else:
+            self.started = False
+
+        self.selected_icon = 0
+        
         self.crew_names, self.crew_links, self.crew_indexes, self.crew_style_files, self.crew_hotkeys = [], [], [], [], []
-        self.started = False
         f = open("./HTML/reactivecrew.html", "w")
         f.write(self.write_main_html())
         f.close()
+        self.html_created_event.set()
 
     # Sets the hotkeys
     def set_keyboard(self):
 
         # For some reason, another function is required for the lambda.
         # Would otherwise cause all the hotkeys to be set to the last function.
+        print('setting keyboard')
         def set_hotkey(i):
-            hotkey = str(self.crew_hotkeys[i])
-            position = int(self.crew_indexes[i])
-            keyboard.add_hotkey(hotkey,  lambda : self.switch_view(hotkey, position))
+            if len(self.crew_hotkeys) > i:
+                hotkey = str(self.crew_hotkeys[i])
+                position = int(self.crew_indexes[i])
+                keyboard.add_hotkey(hotkey,  lambda : self.switch_view(hotkey, position))
     
         for i in range(len(self.crew_indexes)):
             set_hotkey(i)
-
-        # Set the refresh button hotkey
+            
         keyboard.add_hotkey(self.refresh_hotkey,  lambda : self.restart())
+
       
     # Sets the server thread to run forever
     async def server_loop(self):
@@ -72,11 +82,14 @@ class ReactiveCrew:
                 self.crew_names.append(crew['name'])
                 self.crew_links.append(crew['img_src'])
                 self.crew_style_files.append(crew['css_file'])
-                self.crew_hotkeys.append(crew['hotkey'])
+                if crew['hotkey'] != '':
+                    self.crew_hotkeys.append(crew['hotkey'])
 
         crew_data_file.close()
 
-        print('Current Crew: ' + ',\n'.join(self.crew_names))
+        # print('Crew initialized!')
+        # print('!!!')
+        # print('Current Crew: ' + ',\n'.join(self.crew_names))
         plate_height = int(crew_data['img_height']) + int(crew_data['name_size'])
 
         # Get height of the combined icons to see if the main image needs to be placed lower
@@ -89,6 +102,7 @@ class ReactiveCrew:
         if self.main_img_top == 0:
             self.main_img_top += self.main_img_height * (self.scale / 2)
 
+        print('img_top: ' + str(self.main_img_top))
         # First icon styling
         main_plate_height = str(int(crew_data['main_img_height']) + int(crew_data['main_name_size']))
 
@@ -107,6 +121,7 @@ class ReactiveCrew:
         page_styling += '.crew-plate{' + plate_style + '} .row-end { clear:left; }</style>'
 
         link_HTML = '<script type="text/javascript" src="./js/reactivecrew.js"></script>'
+        link_HTML += '<link rel="icon" type="image/x-icon" href="./images/favicon.ico">'
         link_HTML += '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>'
         link_HTML += '<link rel="stylesheet" href="./css/reactivecrew.css">'
 
@@ -204,18 +219,22 @@ class ReactiveCrew:
         crew_html += crew_markup + '</div></div>'
         return crew_html
         
+    #
     def switch_view(self, hotkey, crew_position):
-
-        # print("hotkey pressed: " + hotkey)
-        # print("attempting to switch to: " + str(crew_position))
+        print('last main in switchView: ' + str(self.last_main_icon))
+        print('new main in switchView: ' + str(self.selected_icon))
+        print('crew_position: ' + str(crew_position))
         # if the selection is on an active crew member, change the main image plate to the new crew member's
-        if crew_position <= len(self.crew_indexes) and self.crew_indexes.count(crew_position) > 0:
+        if self.crew_indexes.count(crew_position) > 0:
             self.last_main_icon = self.selected_icon
             self.selected_icon = crew_position
             self.hotkey_event.set()
 
     def restart(self):
-        self.initialize_vars()
+        print('restarting')
+        self.initialize_vars(True)
+        keyboard.unhook_all_hotkeys()
+        self.set_keyboard()
         self.restarting_event.set()
         self.hotkey_event.set()
 
@@ -223,8 +242,10 @@ class ReactiveCrew:
         print('restarting...')
         event_params = {'type': 'refresh'}
         await websocket.send(json.dumps(event_params))
+        # await self.send_message(websocket)
 
     async def send_message(self, websocket):
+
         event_params = {
             'type': 'switch',
             'indexes': str(self.crew_indexes),
@@ -245,25 +266,32 @@ class ReactiveCrew:
         asyncio.run(self.handler(websocket, ''))
 
     async def handler(self, websocket, path):
+
         while True:
             if not self.started:
+                print('starting!!!')
                 self.last_main_icon = len(self.crew_indexes) - 1
                 self.selected_icon = self.crew_indexes[0]
                 self.started = True
                 await self.send_message(websocket)
             else:
+                print('last main: ' + str(self.last_main_icon))
+                print('new main: ' + str(self.selected_icon))
                 print('---------')
-                print('waiting for hotkey')
+                # print('waiting for hotkey')
                 self.hotkey_event.clear()
                 self.hotkey_event.wait()
-                print('hotkey pressed')
+                # print('hotkey pressed')
                 if not self.restarting_event.is_set():
-                    print('switching')
+                    # print('switching')
                     await self.send_message(websocket)
                 else:
-                    print('restarted!')
                     self.restarting_event.clear()
+                    self.html_created_event.wait()
+                    self.html_created_event.clear()
+                    # await self.send_message(websocket)
                     await self.send_restart_message(websocket)
+                    print('restarted!')
 
             await websocket.recv()
 
